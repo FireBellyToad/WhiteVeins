@@ -1,0 +1,59 @@
+<head>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- OSR Sytle sheet -->
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
+    <link rel="stylesheet" href="https://unpkg.com/magick.css">
+    <link rel="stylesheet" href="./css/whiteveins.css">
+
+    <!-- Fabric.js for fancy stuff -->
+    <script defer src="http://unpkg.com/fabric/dist/fabric.min.js"></script>
+
+    <!-- All custom Javascript must be imported here -->
+    <!-- IMPORTANT: entities and utils go BEFORE the UI components -->
+    <script src="./js/utils/randomUtils.js"></script>
+    <script src="./js/utils/roomDrawUtils.js"></script>
+    <script src="./js/entities/characterModel.js"></script>
+    <script src="./js/entities/roomModel.js"></script>
+
+    <!-- Components here -->
+    <script src="./js/components/resourceLoader.js"></script>
+    <script src="./js/components/navigator.js"></script>
+    <script defer src="./js/components/mapAlpineLess.js"></script>
+    <script src="./js/components/search.js"></script>
+    <script src="./js/components/characterManager.js"></script>
+    <script src="./js/components/roomManager.js"></script>
+
+</head>
+
+
+<!-- x-data gives alpine.js reactivity to whole body -->
+
+<body x-data="resourceLoader">
+    <main>
+        <div x-data="navigator">
+
+            <!-- Navigator -->
+            <div class="nav-columns">
+                <nav>
+                    <button @click.self="showPage('roomManager')">Main</button>
+                    <button @click.self="showPage('characterManager')">Character</button>
+                </nav>
+                <nav>
+                    <button>Map</button>
+                    <button>View</button>
+                </nav>
+            </div>
+
+            <!-- Main section. All pages will be shown here-->
+            <section x-html="pageToShow">
+            </section>
+        </div>
+
+        <footer> </footer>
+    </main>
+
+
+</body>

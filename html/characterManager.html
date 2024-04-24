@@ -1,0 +1,24 @@
+<fieldset x-data="characterManager" id="characterManager">
+    <legend>Character:</legend>
+
+    <h1 x-text="currentCharacter.name"></h1>
+
+    <p>
+        <label>Toughness: <span x-text="currentCharacter.toughness "></span></label>
+    </p>
+    <p>
+        <label>Dexterity: <span x-text="currentCharacter.dexterity "></span></label>
+    </p>
+    <p>
+        <label>Willpower: <span x-text="currentCharacter.willpower "></span></label>
+    </p>
+
+    <p>
+        <label>Armor: <span x-text="currentCharacter.armorValue"></span></label>
+    </p>
+    
+    <!-- TODO mache state machine system for whole game-->
+    <button x-show="isNewCharacter" @click="rerollCharacter()">Reroll character</button>
+    <button x-show="isNewCharacter" @click="confirmCharacter()">Confirm character</button>
+
+</fieldset>

@@ -1,0 +1,14 @@
+
+<fieldset x-data="search(['foo', 'bar', 'baz','cagnaccio','baubau'])">
+
+    <legend>Fieldset</legend>
+
+    <input x-model="textToSearch" placeholder="Search...">
+
+    <ul>
+        <template x-for="item of filteredItems" :key="item">
+            <li x-text="item"></li>
+        </template>
+    </ul>
+    <button>BARAUS</button>
+</fieldset>

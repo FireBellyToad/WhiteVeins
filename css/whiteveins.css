@@ -1,0 +1,44 @@
+/* Custom styles */
+
+/* isprired by custom styles available on https://css.winterveil.net/ */
+.nav-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    /* Adjust the space between columns as needed */
+}
+
+.nav-columns>nav {
+    flex: 1;
+    /* Allows each child div to grow equally */
+    min-width: 250px;
+    /* Prevents the columns from getting too narrow before stacking */
+}
+
+@media (max-width: 600px) {
+    .nav-columns {
+        flex-direction: column;
+    }
+}
+
+#characterManager {
+    width: 50%;
+}
+
+p>label>span {
+    font-style: italic;
+}
+
+#roomManagerMap {
+    width: 40%;
+    float: right;
+}
+
+#roomManager {
+    width: 38%;
+    float: left;
+}
+
+canvas {
+    border: 1px solid var(--fg);
+}

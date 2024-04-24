@@ -1,0 +1,32 @@
+<div x-data="roomManager">
+    <div x-cloak x-show="hasCharacterReady">
+
+        <!-- Main body-->
+        <fieldset id="roomManager">
+            <legend>Room</legend>
+
+            <div>
+
+                <p x-text="currentRoom.description"></p>
+
+                <nav>
+                    <button :disabled="currentRoom.alreadySearch ? true : false" @click="searchRoom">
+                        Search room</button>
+                </nav>
+            </div>
+        </fieldset>
+    </div>
+
+    <fieldset x-cloak x-show="!hasCharacterReady">
+        <legend>Room</legend>
+        <!-- Warn if character is not created -->
+        <label>Create a new character to play!</label>
+    </fieldset>
+</div>
+
+<!-- Map body-->
+<fieldset id="roomManagerMap">
+    <legend>Map</legend>
+
+    <canvas id="roomCanvas"></canvas>
+</fieldset>
