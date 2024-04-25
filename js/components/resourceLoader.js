@@ -1,11 +1,14 @@
+/**
+ * Resource load on Alpine.js init 
+ */
 document.addEventListener('alpine:init', () => {
 
-    // Load all resoruces
+    // Load all resources
     Alpine.data('resourceLoader', () => ({
 
-        // Code here...
         async init() {
 
+            //d100 Charcters name
             Alpine.store("characterNamesArray", JSON.parse(await (await fetch(`../data/characterNames.json`)).text()).names);
         }
     }))

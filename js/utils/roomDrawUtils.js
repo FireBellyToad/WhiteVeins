@@ -126,6 +126,7 @@ const RoomDrawUtils = {
         }
 
         const passageRenders = [];
+        const doorRenders = [];
         const offset = 100;
         let startX;
         let startY;
@@ -140,6 +141,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top + roomRenderedRect.height * 1.45;
 
                     passageRenders.push(this.getLine(startX, startY, startX, startY + offset));
+                    doorRenders.push(this.getClickableCircle(startX, startY + offset));
                     break;
                 }
                 case DoorPosition.Cieling: {
@@ -148,6 +150,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top
 
                     passageRenders.push(this.getLine(startX, startY, startX, startY - offset));
+                    doorRenders.push(this.getClickableCircle(startX, startY - offset));
                     break;
                 }
                 case DoorPosition.North: {
@@ -156,6 +159,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top + roomRenderedRect.height * (0.4);
 
                     passageRenders.push(this.getLine(startX, startY, startX + offset, startY - (offset / 2)));
+                    doorRenders.push(this.getClickableCircle(startX + offset, startY - (offset / 2)));
                     break;
                 }
                 case DoorPosition.East: {
@@ -164,6 +168,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top + roomRenderedRect.height
 
                     passageRenders.push(this.getLine(startX, startY, startX + offset, startY + (offset / 2)));
+                    doorRenders.push(this.getClickableCircle(startX + offset, startY + (offset / 2)));
                     break;
                 }
                 case DoorPosition.South: {
@@ -172,6 +177,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top + roomRenderedRect.height;
 
                     passageRenders.push(this.getLine(startX, startY, startX - offset, startY + (offset / 2)));
+                    doorRenders.push(this.getClickableCircle(startX - offset, startY + (offset / 2)));
                     break;
                 }
                 case DoorPosition.West: {
@@ -180,6 +186,7 @@ const RoomDrawUtils = {
                     startY = roomRenderedRect.top + roomRenderedRect.height * (0.4);
 
                     passageRenders.push(this.getLine(startX, startY, startX - offset, startY - (offset / 2)));
+                    doorRenders.push(this.getClickableCircle(startX - offset, startY - (offset / 2)));
                     break;
                 }
 
@@ -187,7 +194,8 @@ const RoomDrawUtils = {
 
         }
 
-        passageRenders.forEach(d => fabricCanvas.add(d));
+        passageRenders.forEach(p => fabricCanvas.add(p));
+        doorRenders.forEach(d => fabricCanvas.add(d));
 
     },
 
@@ -213,5 +221,35 @@ const RoomDrawUtils = {
                 fill: 'transparent',
                 selectable: false
             })
+    },
+
+    /**
+     * 
+     * @param {*} startX 
+     * @param {*} startY 
+     * @param {*} endX 
+     * @param {*} endY 
+     * @returns fabric.Line with arguments as coordinates
+     */
+    getClickableCircle(x, y, clickCallback) {
+        const circle = new fabric.Circle({
+            left: x,
+            top: y,
+            radius: 20, 
+            fill: MAGICK_CSS_BACKGROUND_COLOR,
+            strokeWidth: 5,
+            stroke: 'white',
+            originX: 'center',
+            originY: 'center',
+            hoverCursor: 'pointer',
+            selectable: false
+        });
+
+        circle.on('mousedown', function () {
+            console.log('open door down');
+        });
+
+
+        return circle;
     }
 }
